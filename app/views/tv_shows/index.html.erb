@@ -1,0 +1,27 @@
+<h2>Channel List</h2>
+
+
+
+<%= form_tag tv_shows_path, :method => 'get'  do %>
+    Search:<%= text_field_tag :search, params[:search]%>
+    <%= submit_tag "Search", :name => nil  %>
+<% end %>
+
+    <table>
+      <thead>
+        <th>ChannelName</th>
+        <th>TvShow</th>
+        <th>Show time</th>
+      </thead>
+      <% @tv_shows.each do |tv| %>
+      <tbody>
+        <tr>
+          <td><%= tv.channel.name %></td>
+          <td><%= tv.name %></td></br>
+          <td><%= tv.show_time.strftime("%I:%M%p") %></td></br>
+          <td><%= link_to tv.is_favourite? ? 'Favourite' : 'Mark Favourite', favourite_tv_show_path(tv.id), method: :post  %></td></br>
+          <% %>
+        </tr>
+      </tbody>
+    </table>
+<% end %>
