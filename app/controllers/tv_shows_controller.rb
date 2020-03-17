@@ -1,4 +1,5 @@
 class TvShowsController < ApplicationController
+  include TvShowsHelper
   def index
     @tv_shows = TvShow.search(params[:search])
   end
